@@ -8,9 +8,9 @@ import moxy.MvpPresenter
 
 class LoginPresenter ()  : MvpPresenter<ILoginView>(), ILoginPresenter  {
 
-    override fun getData(A: String, B: String) {
+    override fun getData(A: String) {
 
-        val sumResult = A.toInt() + B.toInt()
+        val sumResult = A.toInt()
 
 
         if (sumResult==0) {
