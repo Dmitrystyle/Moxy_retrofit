@@ -8,7 +8,7 @@ import moxy.MvpPresenter
 
 class LoginPresenter ()  : MvpPresenter<ILoginView>(), ILoginPresenter  {
 
-    override fun onSumm(A: String, B: String) {
+    override fun getData(A: String, B: String) {
 
         val sumResult = A.toInt() + B.toInt()
 

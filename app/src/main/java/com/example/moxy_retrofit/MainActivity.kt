@@ -20,32 +20,27 @@ class MainActivity: MvpAppCompatActivity(), BaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        summ()
+        getData() //вводим данные
     }
 
-    private fun summ() {
+    private fun getData() {
 
+        var buttonSumm=findViewById<Button>(R.id.button)
+        var textSeach=findViewById<EditText>(R.id.editTextURL)
 
-
-        var buttonSumm=findViewById<Button>(R.id.buttonSum)
-        var edTexA=findViewById<EditText>(R.id.editTextSumA)
-        var edTexB=findViewById<EditText>(R.id.editTextSumB)
 
         buttonSumm.setOnClickListener {
-            presenter.onSumm(edTexA.text.toString(), edTexB.text.toString())
+            presenter.getData(textSeach.text.toString())
         }
     }
 
 
-    @SuppressLint("WrongViewCast")
-    override fun onLoginSuccess(sumResult: String) {
-
-        val textView : TextView =findViewById<EditText>(R.id.resultSumm) as TextView
-        textView.text =sumResult
-
+    override fun showDialog() {
+        var TexRequest=findViewById<TextView>(R.id.setTextRequest)
+        TexRequest.text =//присваиваем результат
     }
 
-    override fun onLoginError(sumResult: String) {
+    override fun showError(massage: String) {
         Toast.makeText(this, sumResult, Toast.LENGTH_LONG).show()
     }
 }
