@@ -26,15 +26,6 @@
             android:layout_height="59dp"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/editTextURL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-
             <Button
                 android:id="@+id/button"
                 android:layout_width="wrap_content"

@@ -1,7 +1,5 @@
 package com.example.moxy_retrofit
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -9,9 +7,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.moxy_retrofit.presenter.LoginPresenter
 import com.example.moxy_retrofit.view.BaseView
-import com.example.moxy_retrofit.view.ILoginView
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
+import retrofit2.Response
 
 class MainActivity: MvpAppCompatActivity(), BaseView {
 
@@ -26,21 +24,19 @@ class MainActivity: MvpAppCompatActivity(), BaseView {
     private fun getData() {
 
         var buttonSumm=findViewById<Button>(R.id.button)
-        var textSeach=findViewById<EditText>(R.id.editTextURL)
-
-
+       // var textSeach=findViewById<EditText>(R.id.editTextURL)
         buttonSumm.setOnClickListener {
-            presenter.getData(textSeach.text.toString())
+            presenter.getPostPresenter()
         }
     }
 
 
-    override fun showDialog() {
-        var TexRequest=findViewById<TextView>(R.id.setTextRequest)
-        TexRequest.text =//присваиваем результат
+    override fun showDialog(s: String) {
+         Toast.makeText(this, s, Toast.LENGTH_LONG).show()
+
     }
 
     override fun showError(massage: String) {
-        Toast.makeText(this, sumResult, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, massage, Toast.LENGTH_LONG).show()
     }
 }
