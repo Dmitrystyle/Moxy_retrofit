@@ -32,12 +32,12 @@ class MainActivity: MvpAppCompatActivity(), BaseView {
 
 
     override fun showDialog(s: String) {
-       var setDataRepository = findViewById<TextView>(R.id.textGetDataUserr)
-       setDataRepository.text = s
+     //  var setDataRepository = findViewById<TextView>(R.id.textGetDataUser)
+     //  setDataRepository.text = s
     }
 
     override fun showError(massage: String) {
-        var setDataRepository = findViewById<TextView>(R.id.textGetDataUserr)
-        setDataRepository.text = massage
+     //   var setDataRepository = findViewById<TextView>(R.id.textGetDataUserr)
+     //   setDataRepository.text = massage
     }
 }
