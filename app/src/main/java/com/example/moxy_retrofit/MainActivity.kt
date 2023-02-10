@@ -17,14 +17,14 @@ class MainActivity: MvpAppCompatActivity(), BaseView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        getData() //вводим данные
+         setContentView(R.layout.activity_main)
+         getData()
+
     }
 
     private fun getData() {
 
         var buttonSumm=findViewById<Button>(R.id.button)
-       // var textSeach=findViewById<EditText>(R.id.editTextURL)
         buttonSumm.setOnClickListener {
             presenter.getPostPresenter()
         }
@@ -32,11 +32,12 @@ class MainActivity: MvpAppCompatActivity(), BaseView {
 
 
     override fun showDialog(s: String) {
-         Toast.makeText(this, s, Toast.LENGTH_LONG).show()
-
+       var setDataRepository = findViewById<TextView>(R.id.textGetDataUserr)
+       setDataRepository.text = s
     }
 
     override fun showError(massage: String) {
-        Toast.makeText(this, massage, Toast.LENGTH_LONG).show()
+        var setDataRepository = findViewById<TextView>(R.id.textGetDataUserr)
+        setDataRepository.text = massage
     }
 }
