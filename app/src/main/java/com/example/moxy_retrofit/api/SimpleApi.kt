@@ -2,7 +2,7 @@ package com.example.moxy_retrofit.api
 
 
 import com.example.moxy_retrofit.utils.Constants
-import com.example.retrofit.Repo
+import com.example.moxy_retrofit.model.Repo
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

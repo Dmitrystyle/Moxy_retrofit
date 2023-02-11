@@ -2,8 +2,7 @@ package com.example.moxy_retrofit.presenter
 
 import com.example.moxy_retrofit.api.SimpleApi
 import com.example.moxy_retrofit.view.BaseView
-import com.example.retrofit.Repo
-
+import com.example.moxy_retrofit.model.Repo
 
 import moxy.MvpPresenter
 import retrofit2.Call
@@ -22,7 +21,7 @@ class LoginPresenter ()  : MvpPresenter<BaseView>() {
             }
 
             override fun onResponse(call: Call<List<Repo>>?, response: Response<List<Repo>>) {
-                viewState.showDialog("OnResponse sucsses ${response.body()?.toString()}")
+                viewState.showDialog(ArrayList<Repo>())
             }
 
         })
