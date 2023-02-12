@@ -21,7 +21,13 @@ class LoginPresenter ()  : MvpPresenter<BaseView>() {
             }
 
             override fun onResponse(call: Call<List<Repo>>?, response: Response<List<Repo>>) {
-                viewState.showDialog(ArrayList<Repo>())
+
+                if (response.isSuccessful && (response.body() != null)){
+                    response.body().let {
+                        viewState.showDialog(response.body() as ArrayList<Repo>)
+                    }
+                }
+
             }
 
         })
