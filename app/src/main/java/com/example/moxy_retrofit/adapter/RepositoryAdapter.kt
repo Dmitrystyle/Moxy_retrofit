@@ -3,14 +3,14 @@ package com.example.retrofit
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moxy_retrofit.R
 import com.example.moxy_retrofit.model.Repo
 import kotlinx.android.synthetic.main.item_repository.view.*
+import retrofit2.Response
 
-class RepositoryAdapter(private val userRepository: ArrayList<Repo>) : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>() {
+class RepositoryAdapter(private val userRepository: List<Repo>) : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
 

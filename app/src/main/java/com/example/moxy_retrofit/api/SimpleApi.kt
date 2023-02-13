@@ -15,7 +15,7 @@ interface SimpleApi {
 
     @GET("users/{userName}/repos")
 
-    suspend fun getRepo(@Path("userName") user: String
+    fun getRepo(@Path("userName") user: String
     ): Call<List<Repo>>
 
     companion object {

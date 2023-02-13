@@ -11,8 +11,8 @@ import retrofit2.Response
 
 class LoginPresenter ()  : MvpPresenter<BaseView>() {
 
-     suspend fun getPostPresenter(user: String) {
-        val apiInerfase = SimpleApi.create().getRepo(user)
+    fun getPostPresenter(userName:String) {
+        val apiInerfase = SimpleApi.create().getRepo(userName)
         apiInerfase.enqueue(object : retrofit2.Callback <List<Repo>>{
 
             override fun onFailure(call: Call<List<Repo>>?, t: Throwable) {
@@ -24,6 +24,8 @@ class LoginPresenter ()  : MvpPresenter<BaseView>() {
 
                 if (response.isSuccessful && (response.body() != null)){
                     response.body().let {
+                       // val data = response
+                      //  viewState.showDialog(data)
                         viewState.showDialog(response.body() as ArrayList<Repo>)
                     }
                 }
