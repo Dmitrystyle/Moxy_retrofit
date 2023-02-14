@@ -7,12 +7,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 
-class RepoPresenter() : MvpPresenter<MainView>() {
-    fun getPostPresenter(userName: String) {
+class RepoPresenter() : BasePresenter() {
+    fun requestPostPresenter(userName: String) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val list = SimpleApi.create().getRepo(userName)
-                viewState.showDialog(list)
+                viewState.showListVew(list)
             } catch (e: Exception) {
                 e.printStackTrace()
                 viewState.showError(ERROR_MASSAGE)

@@ -27,10 +27,10 @@ class MainActivity: MvpAppCompatActivity(), MainView {
         val button=findViewById<Button>(R.id.button)
         val userNameEditText = findViewById<EditText>(R.id.editNamePerson)
         button.setOnClickListener {
-                presenter.getPostPresenter(userNameEditText.text.toString())
+                presenter.requestPostPresenter(userNameEditText.text.toString())
         }
     }
-    override fun showDialog(result: List<Repo>) {
+    override fun showListVew(result: List<Repo>) {
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerview.layoutManager = LinearLayoutManager(this)
         val adapter = RepositoryAdapter(result)
