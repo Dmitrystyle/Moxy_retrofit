@@ -1,6 +1,7 @@
 package com.example.moxy_retrofit
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -9,15 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moxy_retrofit.presenter.LoginPresenter
 import com.example.moxy_retrofit.view.BaseView
 import com.example.moxy_retrofit.model.Repo
-import com.example.retrofit.RepositoryAdapter
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.example.moxy_retrofit.adapter.RepositoryAdapter
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
 class MainActivity: MvpAppCompatActivity(), BaseView {
 
-    val presenter by moxyPresenter { LoginPresenter() }
+    private val presenter by moxyPresenter { LoginPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +24,12 @@ class MainActivity: MvpAppCompatActivity(), BaseView {
          getData()
     }
 
-    private fun getData() {
-
+    fun getData() {
         var button=findViewById<Button>(R.id.button)
-        var d=findViewById<EditText>(R.id.editTextTextPersonName3)
-        val userName = d.text.toString()
         button.setOnClickListener {
-            presenter.getPostPresenter(userName)
+            val userName = findViewById<EditText>(R.id.editNamePerson)
+            Log.d("got username", userName.text.toString())
+            presenter.getPostPresenter(userName.text.toString())
         }
     }
     override fun showDialog(result: List<Repo>) {
@@ -40,7 +38,6 @@ class MainActivity: MvpAppCompatActivity(), BaseView {
         val adapter = RepositoryAdapter(result)
         recyclerview.adapter = adapter
     }
-
     override fun showError(massage: String) {
             Toast.makeText(applicationContext, massage, Toast.LENGTH_SHORT).show()
     }
