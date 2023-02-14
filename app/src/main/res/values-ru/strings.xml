@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Moxy_retrofit</string>
+    <string name="userName">Имя пользователя</string>
+    <string name="FindUserRepositorys">Найти репозитории пользователя</string>
+</resources>

@@ -47,7 +47,7 @@
         <EditText
             android:id="@+id/editNamePerson"
             android:layout_width="262dp"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:background="@color/white"
@@ -62,7 +62,7 @@
         <Button
             android:id="@+id/button"
             android:layout_width="82dp"
-            android:layout_height="47dp"
+            android:layout_height="48dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/gradient_grey"
             android:text="@android:string/ok"
@@ -78,7 +78,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@color/white"
-        android:paddingTop="30dp"
+        android:paddingTop="4dp"
         android:paddingEnd="20dp"
         android:visibility="visible">
 
