@@ -1,5 +1,5 @@
-package com.example.moxy_retrofit.api
-import com.example.moxy_retrofit.model.Repo
+package com.example.moxy_retrofit.data.api
+import com.example.moxy_retrofit.data.model.Repo
 import com.example.moxy_retrofit.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

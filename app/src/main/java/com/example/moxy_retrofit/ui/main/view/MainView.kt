@@ -1,6 +1,6 @@
-package com.example.moxy_retrofit.view
+package com.example.moxy_retrofit.ui.main.view
 
-import com.example.moxy_retrofit.model.Repo
+import com.example.moxy_retrofit.data.model.Repo
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 

@@ -1,4 +1,4 @@
-package com.example.moxy_retrofit
+package com.example.moxy_retrofit.ui.main.view
 
 import android.os.Bundle
 import android.widget.Button
@@ -6,9 +6,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.moxy_retrofit.presenter.RepoPresenter
-import com.example.moxy_retrofit.view.MainView
-import com.example.moxy_retrofit.model.Repo
+import com.example.moxy_retrofit.R
+import com.example.moxy_retrofit.ui.main.presenter.RepoPresenter
+import com.example.moxy_retrofit.ui.main.view.MainView
+import com.example.moxy_retrofit.data.model.Repo
 import com.example.moxy_retrofit.adapter.RepositoryAdapter
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
@@ -16,6 +17,7 @@ import moxy.ktx.moxyPresenter
 class MainActivity: MvpAppCompatActivity(), MainView {
 
     private val presenter by moxyPresenter { RepoPresenter() }
+   // private lateinit var adapter: RepositoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,7 @@ class MainActivity: MvpAppCompatActivity(), MainView {
     override fun showListVew(result: List<Repo>) {
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerview.layoutManager = LinearLayoutManager(this)
-        val adapter = RepositoryAdapter(result)
+        var adapter = RepositoryAdapter(result)
         recyclerview.adapter = adapter
     }
     override fun showError(massage: String) {

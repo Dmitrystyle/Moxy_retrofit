@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moxy_retrofit.R
-import com.example.moxy_retrofit.model.Repo
+import com.example.moxy_retrofit.data.model.Repo
 
 class RepositoryAdapter(private val userRepository: List<Repo>) : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>() {
 
