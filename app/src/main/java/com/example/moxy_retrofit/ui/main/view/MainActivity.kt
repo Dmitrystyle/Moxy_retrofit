@@ -32,7 +32,7 @@ class MainActivity: MvpAppCompatActivity(), MainView {
                 presenter.requestPostPresenter(userNameEditText.text.toString())
         }
     }
-    override fun showListVew(result: List<Repo>) {
+    override fun showRepoList(result: List<Repo>) {
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerview.layoutManager = LinearLayoutManager(this)
         var adapter = RepositoryAdapter(result)

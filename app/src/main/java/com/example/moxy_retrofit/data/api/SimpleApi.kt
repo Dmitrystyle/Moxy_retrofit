@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface SimpleApi {
-    @GET(Constants.GET_URL)
+    @GET( "users/{userName}/repos")
 
     suspend fun getRepo(@Path("userName") userName: String): List<Repo>
 
