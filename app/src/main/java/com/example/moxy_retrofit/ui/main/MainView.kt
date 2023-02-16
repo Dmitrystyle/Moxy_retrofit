@@ -1,11 +1,11 @@
 package com.example.moxy_retrofit.ui.main
 
 import com.example.moxy_retrofit.data.model.Repo
-import moxy.MvpView
+import com.example.moxy_retrofit.ui.base.BaseView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.OneExecution
 
-interface MainView : MvpView {
+interface MainView : BaseView {
         @AddToEndSingle
         fun showRepoList(result: List<Repo>)
         @OneExecution

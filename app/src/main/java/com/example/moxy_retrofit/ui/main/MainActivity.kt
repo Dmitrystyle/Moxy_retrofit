@@ -9,15 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moxy_retrofit.R
 import com.example.moxy_retrofit.data.model.Repo
 import com.example.moxy_retrofit.adapter.RepositoryAdapter
+import com.example.moxy_retrofit.ui.base.BaseActivity
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
-class MainActivity: MvpAppCompatActivity(), MainView {
+class MainActivity: BaseActivity(), MainView {
 
     private val presenter by moxyPresenter { MainPresenter() }
-   // private lateinit var adapter: RepositoryAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
          setContentView(R.layout.activity_main)
          setupUI()
