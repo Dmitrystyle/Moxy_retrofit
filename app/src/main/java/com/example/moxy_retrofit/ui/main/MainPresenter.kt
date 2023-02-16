@@ -1,4 +1,4 @@
-package com.example.moxy_retrofit.ui.main.presenter
+package com.example.moxy_retrofit.ui.main
 import com.example.moxy_retrofit.data.repository.Repository
 import com.example.moxy_retrofit.ui.base.BasePresenter
 import com.example.moxy_retrofit.utils.Constants.Companion.ERROR_MASSAGE
@@ -6,10 +6,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class RepoPresenter() : BasePresenter() {
+class MainPresenter() : BasePresenter() {
 
     fun requestPostPresenter(userName: String) {
-        GlobalScope.launch(Dispatchers.Main) {
+        var PresentalScope = GlobalScope
+        PresentalScope.launch(Dispatchers.Main) {
             try {
 
                 val list =  Repository.getRepo(userName)                // SimpleApi.create().getRepo(userName) //сюда указываем

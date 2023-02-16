@@ -1,4 +1,4 @@
-package com.example.moxy_retrofit.ui.main.view
+package com.example.moxy_retrofit.ui.main
 
 import android.os.Bundle
 import android.widget.Button
@@ -7,8 +7,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moxy_retrofit.R
-import com.example.moxy_retrofit.ui.main.presenter.RepoPresenter
-import com.example.moxy_retrofit.ui.main.view.MainView
 import com.example.moxy_retrofit.data.model.Repo
 import com.example.moxy_retrofit.adapter.RepositoryAdapter
 import moxy.MvpAppCompatActivity
@@ -16,7 +14,7 @@ import moxy.ktx.moxyPresenter
 
 class MainActivity: MvpAppCompatActivity(), MainView {
 
-    private val presenter by moxyPresenter { RepoPresenter() }
+    private val presenter by moxyPresenter { MainPresenter() }
    // private lateinit var adapter: RepositoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {

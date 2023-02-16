@@ -1,4 +1,4 @@
-package com.example.moxy_retrofit.ui.main.view
+package com.example.moxy_retrofit.ui.main
 
 import com.example.moxy_retrofit.data.model.Repo
 import moxy.MvpView
