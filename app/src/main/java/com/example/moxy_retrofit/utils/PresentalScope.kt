@@ -14,8 +14,5 @@ import kotlin.coroutines.EmptyCoroutineContext
 }
 
 
-/*
-CoroutineDispatcher — отправляет работу в соответствующий поток.
-Job — управляет жизненным циклом сопрограммы.
-CoroutineName — имя сопрограммы, полезное для отладки.
-CoroutineExceptionHandler — обрабатывает неперехваченные исключения.*/
+
+
