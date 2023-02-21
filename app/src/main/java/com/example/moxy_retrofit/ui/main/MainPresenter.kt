@@ -5,8 +5,8 @@ import com.example.moxy_retrofit.utils.Constants.Companion.ERROR_MASSAGE
 import kotlinx.coroutines.*
 
 class MainPresenter() : BasePresenter() {
-    fun requestPostPresenter(userName: String) {
-         launch() {
+    fun requestRepoListPresenter(userName: String) {
+         launch {
             try {
                 val list =  Repository.getRepo(userName)
                 viewState.showRepoList(list)
@@ -18,7 +18,4 @@ class MainPresenter() : BasePresenter() {
     }
 
 }
-
-
-
 

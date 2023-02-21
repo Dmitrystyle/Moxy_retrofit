@@ -1,4 +1,4 @@
-package com.example.moxy_retrofit.adapter
+package com.example.moxy_retrofit.ui.main
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
