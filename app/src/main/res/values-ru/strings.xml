@@ -3,4 +3,5 @@
     <string name="app_name">Moxy_retrofit</string>
     <string name="userName">Имя пользователя</string>
     <string name="FindUserRepositorys">Найти репозитории пользователя</string>
+    <string name="error_massage">Ошибка</string>
 </resources>

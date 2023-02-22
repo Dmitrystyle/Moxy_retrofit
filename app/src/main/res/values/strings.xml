@@ -2,5 +2,6 @@
     <string name="app_name">Moxy_retrofit</string>
     <string name="userName">Add User Name</string>
     <string name="FindUserRepositorys">Find User Repositorys</string>
+    <string name="error_massage">Error</string>
 
 </resources>
