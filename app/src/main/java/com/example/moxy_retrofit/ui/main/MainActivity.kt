@@ -38,8 +38,9 @@ class MainActivity : BaseActivity(), MainView {
         adapter.repoList = result
     }
 
-    override fun showError(massage: String) {
-
-           Toast.makeText(this, massage , Toast.LENGTH_SHORT).show()
+    override fun showError(massage: Int, massageType:String) {
+             //    val massageText = Resources.getSystem().getString(R.string.error_massage)
+              Toast.makeText(this, massage , Toast.LENGTH_SHORT).show()
+             Toast.makeText(this, massageType , Toast.LENGTH_SHORT).show()
     }
 }

@@ -9,5 +9,5 @@ interface MainView : BaseView {
         @AddToEndSingle
         fun showRepoList(result: List<Repo>)
         @OneExecution
-        fun showError(massage:String)
+        fun showError(massage:Int, massageType:String)
     }
