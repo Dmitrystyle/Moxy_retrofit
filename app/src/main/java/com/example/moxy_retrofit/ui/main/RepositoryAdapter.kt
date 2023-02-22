@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moxy_retrofit.R
 import com.example.moxy_retrofit.data.model.Repo
 
-class RepositoryAdapter(private val userRepository: List<Repo>) : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>() {
+class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>() {
 
-    //    private var userRepository: List<Repo>
-    //    set(value) {
-    //        field = value
-    //        notifyDataSetChanged()
+       var repoList: List<Repo> = ArrayList()
+          set(value) {
+            field = value
+            notifyDataSetChanged()
+           }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
@@ -21,12 +22,12 @@ class RepositoryAdapter(private val userRepository: List<Repo>) : RecyclerView.A
         return DataViewHolder( viewInflater)
     }
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        val ItemsViewModel = userRepository[position]
+        val ItemsViewModel = repoList[position]
         holder.textView.text = ItemsViewModel.name
     }
 
     override fun getItemCount(): Int {
-        return userRepository.size
+        return repoList.size
     }
 
     class DataViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
