@@ -16,8 +16,7 @@ class MainPresenter() : BasePresenter() {
                 viewState.showRepoList(list)
             } catch (e: Exception) {
                 e.printStackTrace()
-               /* val context: Context = ApplicationProvider.getApplicationContext()   e.message*/
-                val massageText = R.string.error_massage//Resources.getSystem().getString(error_massage)
+                val massageText = R.string.error_massage
                 val massageType:String = "${e.message}"
                 viewState.showError(massageText, massageType)
 
