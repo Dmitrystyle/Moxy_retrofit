@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".GraphActivity"
+            android:name=".ui.graph.GraphActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
