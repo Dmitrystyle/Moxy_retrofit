@@ -13,7 +13,6 @@ import com.example.moxy_retrofit.ui.base.BaseActivity
 import com.example.moxy_retrofit.ui.graph.GraphActivity
 import moxy.ktx.moxyPresenter
 
-
 class MainActivity : BaseActivity(), MainView {
     private val adapter = RepositoryAdapter()
     private val presenter by moxyPresenter { MainPresenter() }
@@ -33,18 +32,18 @@ class MainActivity : BaseActivity(), MainView {
         recyclerview.layoutManager = LinearLayoutManager(this)
 
         recyclerview.adapter = adapter
-
-        button.setOnClickListener {
-            val intent = Intent(this, GraphActivity::class.java )
-            startActivity(intent)
-        }
-
+       adapter.setOnItemCkickListener(object : RepositoryAdapter.onItemClickListener{
+           override fun onItemClick(position: Int) {
+              // Toast.makeText(this@MainActivity, "You clicked $position", Toast.LENGTH_SHORT).show()
+               val intent = Intent(this@MainActivity, GraphActivity::class.java )
+               intent.putExtra("lname", position.toString())
+               startActivity(intent)
+           }
+       })
     }
-
     override fun showRepoList(result: List<Repo>) {
         adapter.repoList = result
     }
-
     override fun showError(massage: Int, massageType:String) {
              Toast.makeText(this, massage , Toast.LENGTH_SHORT).show()
              Toast.makeText(this, massageType , Toast.LENGTH_SHORT).show()
