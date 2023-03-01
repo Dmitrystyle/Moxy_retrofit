@@ -8,7 +8,7 @@ import com.example.moxy_retrofit.R
 import com.example.moxy_retrofit.data.model.Repo
 
 class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>() {
-
+       private lateinit var mListener: onItemClickListener
        var repoList: List<Repo> = ArrayList()
           set(value) {
             field = value
@@ -16,11 +16,8 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>
            }
 
     //______чтение нажатия клавиши_____
-    private lateinit var mListener: onItemClickListener
-    interface onItemClickListener{
-        fun onItemClick(position: Int, textRepo:String)
+     interface onItemClickListener{fun onItemClick(position: Int, textRepo:String)
     }
-
     fun setOnItemCkickListener(listener: onItemClickListener){
         mListener = listener
     }
