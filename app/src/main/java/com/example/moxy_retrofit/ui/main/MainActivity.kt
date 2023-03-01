@@ -31,12 +31,11 @@ class MainActivity : BaseActivity(), MainView {
         val recyclerview = findViewById<RecyclerView>(id.recyclerView)
         recyclerview.layoutManager = LinearLayoutManager(this)
 
-        recyclerview.adapter = adapter
+       recyclerview.adapter = adapter
        adapter.setOnItemCkickListener(object : RepositoryAdapter.onItemClickListener{
-           override fun onItemClick(position: Int) {
-              // Toast.makeText(this@MainActivity, "You clicked $position", Toast.LENGTH_SHORT).show()
+              override fun onItemClick(position: Int, textRepo: String) {
                val intent = Intent(this@MainActivity, GraphActivity::class.java )
-               intent.putExtra("lname", position.toString())
+               intent.putExtra("lname", textRepo)
                startActivity(intent)
            }
        })

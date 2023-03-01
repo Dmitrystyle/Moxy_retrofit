@@ -24,9 +24,9 @@ class GraphActivity :  BaseActivity() {
         val intent = intent
         val lName = intent.getStringExtra("lname")
         val tvView = findViewById<TextView>(textViewSendData)
-        tvView.text = "Your position №: $lName"
+        tvView.text = "Yoy select: $lName"
 
-//________тестовая кнопка возврата_______
+        //_____тестовая кнопка возврата_______
         val buttonBack = findViewById<Button>(button_back)
         buttonBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java )

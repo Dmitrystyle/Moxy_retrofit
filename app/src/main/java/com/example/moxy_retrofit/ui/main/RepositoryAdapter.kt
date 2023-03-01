@@ -18,7 +18,7 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>
     //______чтение нажатия клавиши_____
     private lateinit var mListener: onItemClickListener
     interface onItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, textRepo:String)
     }
 
     fun setOnItemCkickListener(listener: onItemClickListener){
@@ -32,20 +32,18 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>
         return DataViewHolder( viewInflater, mListener)
     }
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        val ItemsViewModel = repoList[position]
-        holder.textView.text = ItemsViewModel.name
-
+        holder.textView.text = repoList[position].name
     }
 
     override fun getItemCount(): Int {
         return repoList.size
     }
 
-    class DataViewHolder(ItemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(ItemView) {
+   inner class DataViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
        val textView: TextView = itemView.findViewById(R.id.textViewUserName)
 
     init {
-        ItemView.setOnClickListener { listener.onItemClick(adapterPosition) }
+        itemView.setOnClickListener { listener.onItemClick(adapterPosition, repoList[adapterPosition].name) }
     }
 
     }
