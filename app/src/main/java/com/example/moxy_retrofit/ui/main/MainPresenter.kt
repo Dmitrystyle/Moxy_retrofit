@@ -6,7 +6,7 @@ import com.example.moxy_retrofit.ui.base.BasePresenter
 import kotlinx.coroutines.*
 
 
-class MainPresenter() : BasePresenter() {
+class MainPresenter() :  BasePresenter <MainView>() {
 
     fun requestRepoListPresenter(userName: String ) {
 

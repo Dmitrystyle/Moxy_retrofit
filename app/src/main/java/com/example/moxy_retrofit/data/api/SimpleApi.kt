@@ -15,6 +15,12 @@ interface SimpleApi {
 
     suspend fun getRepo(@Path("userName") userName: String): List<Repo>
 
+
+    @GET( "repos/{userName}/{userRepositoryName}")
+
+    suspend fun getRepoSTAR(@Path("userName") userName: String, @Path("userRepositoryName") userRepositoryName: String ): List<Repo>
+
+
     companion object {
         fun create(): SimpleApi {
 

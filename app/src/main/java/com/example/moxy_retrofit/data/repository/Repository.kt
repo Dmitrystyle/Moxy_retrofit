@@ -6,5 +6,6 @@ object Repository {
 
     private val api = SimpleApi.create()
     suspend fun getRepo(user: String) = api.getRepo(user)
+    suspend fun getSTARrepo(user: String, userRepositoryName: String) = api.getRepoSTAR(user, userRepositoryName)
 
 }

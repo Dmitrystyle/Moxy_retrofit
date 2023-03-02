@@ -10,7 +10,7 @@ import kotlinx.coroutines.SupervisorJob
 import moxy.MvpPresenter
 import kotlin.coroutines.CoroutineContext
 
-open class BasePresenter: MvpPresenter<MainView>(), CoroutineScope {
+open class BasePresenter<BaseView>: MvpPresenter<MainView>(), CoroutineScope {
 
     private val job = SupervisorJob()
     override val coroutineContext: CoroutineContext = job + Dispatchers.Main
