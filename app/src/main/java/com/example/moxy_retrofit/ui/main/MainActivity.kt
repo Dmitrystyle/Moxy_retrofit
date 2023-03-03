@@ -27,6 +27,7 @@ class MainActivity : BaseActivity(), MainView {
         val userNameEditText = findViewById<EditText>(id.editNamePerson)
         button.setOnClickListener {
             presenter.requestRepoListPresenter(userNameEditText.text.toString())
+
         }
         val recyclerview = findViewById<RecyclerView>(id.recyclerView)
         recyclerview.layoutManager = LinearLayoutManager(this)
@@ -36,6 +37,7 @@ class MainActivity : BaseActivity(), MainView {
               override fun onItemClick(position: Int, textRepo: String) {
                val intent = Intent(this@MainActivity, GraphActivity::class.java )
                intent.putExtra("lname", textRepo)
+               intent.putExtra("uname", userNameEditText.text.toString())
                startActivity(intent)
            }
        })
