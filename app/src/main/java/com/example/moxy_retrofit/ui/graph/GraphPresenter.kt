@@ -7,17 +7,17 @@ import kotlinx.coroutines.launch
 
 class GraphPresenter: BasePresenter <GraphView>(){
 
-    fun requestRepoListPresenter(user: String, userRepositoryName: String ) {
+    fun requestRepoAndUserPresenter(user: String, userRepositoryName: String ) {
 
         launch {
             try {
                 val list =  Repository.getSTARrepo(user, userRepositoryName)
-                viewState.showRepoList(list)
+                viewState.showGraph(list)
             } catch (e: Exception) {
                 e.printStackTrace()
                 val massageText = R.string.error_massage
                 val massageType:String = "${e.message}"
-                viewState.showError(massageText, massageType)
+               viewState.showErrorGraph(massageText, massageType)
 
             }
         }

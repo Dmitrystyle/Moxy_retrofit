@@ -36,7 +36,7 @@ class MainActivity : BaseActivity(), MainView {
        adapter.setOnItemCkickListener(object : RepositoryAdapter.onItemClickListener{
               override fun onItemClick(position: Int, textRepo: String) {
                val intent = Intent(this@MainActivity, GraphActivity::class.java )
-               intent.putExtra("lname", textRepo)
+               intent.putExtra("repoName", textRepo)
                intent.putExtra("uname", userNameEditText.text.toString())
                startActivity(intent)
            }
