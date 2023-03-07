@@ -23,12 +23,12 @@ class GraphActivity :  BaseActivity(), GraphView {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_graph)
         setupUI()
-        buttonRetern()
+        buttonReturn()
 
     }
 
-    private fun buttonRetern() {
-        val buttonBack = findViewById<Button>(button_back) //на всякий случай тестовая кнопка возврата
+    private fun buttonReturn() {
+        val buttonBack = findViewById<Button>(button_back)
         buttonBack.setOnClickListener {
             val intent = Intent(this@GraphActivity, MainActivity::class.java )
             startActivity(intent)
@@ -46,8 +46,7 @@ class GraphActivity :  BaseActivity(), GraphView {
 
     override fun showGraph(massageSTARSdata: List<Repo>) {
          repoList=massageSTARSdata
-         Toast.makeText(this@GraphActivity, repoList.toString() , Toast.LENGTH_SHORT).show()
-
+         Toast.makeText(this@GraphActivity, repoList.toString(), Toast.LENGTH_SHORT).show()
     }
 
     override fun showErrorGraph(massage: Int, massageType:String) {

@@ -17,7 +17,7 @@ class GraphPresenter: BasePresenter <GraphView>(){
                 e.printStackTrace()
                 val massageText = R.string.error_massage
                 val massageType:String = "${e.message}"
-               viewState.showErrorGraph(massageText, massageType)
+                viewState.showErrorGraph(massageText, massageType)
 
             }
         }

@@ -13,11 +13,12 @@ interface SimpleApi {
     @GET( "users/{userName}/repos")
     suspend fun getRepo(@Path("userName") userName: String): List<Repo>
 
-    @GET( "repos/{userName}/{userRepositoryName}")
+    @GET( "repos/{userName}/{userRepositoryName}/stargazers?application/vnd.github.star+json")
     suspend fun getRepoSTAR(@Path("userName") userName: String, @Path("userRepositoryName") userRepositoryName: String ): List<Repo>
 
     //https://api.github.com/repos/Dmitrystyle/Retrofit/stargazers
-    //application/vnd.github.star+json
+    //hader - application/vnd.github.star+json
+    //итог с постмена: https://api.github.com/repos/jjoe64/GraphView/stargazers?application/vnd.github.star+json
 
     companion object {
         fun create(): SimpleApi {
