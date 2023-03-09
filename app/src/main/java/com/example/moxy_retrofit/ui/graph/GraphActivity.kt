@@ -9,6 +9,7 @@ import com.example.moxy_retrofit.R.*
 import com.example.moxy_retrofit.R.id.button_back
 import com.example.moxy_retrofit.R.id.textViewSendData
 import com.example.moxy_retrofit.data.model.Repo
+import com.example.moxy_retrofit.data.model.Stars
 import com.example.moxy_retrofit.ui.base.BaseActivity
 import com.example.moxy_retrofit.ui.main.MainActivity
 import moxy.ktx.moxyPresenter
@@ -16,7 +17,7 @@ import moxy.ktx.moxyPresenter
 
 class GraphActivity :  BaseActivity(), GraphView {
 
-    var repoList: List<Repo> = ArrayList()
+    var repoDataList: List<Stars> = ArrayList()
     private val presenterGraph by moxyPresenter { GraphPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,9 +45,9 @@ class GraphActivity :  BaseActivity(), GraphView {
         presenterGraph.requestRepoAndUserPresenter(userName.toString(), repoName.toString()) //передаем данные сразу о пользователе и репозитории
     }
 
-    override fun showGraph(massageSTARSdata: List<Repo>) {
-         repoList=massageSTARSdata
-         Toast.makeText(this@GraphActivity, repoList.toString(), Toast.LENGTH_SHORT).show()
+    override fun showGraph(result: List<Stars>) {
+         repoDataList=result
+         Toast.makeText(this@GraphActivity, repoDataList.toString(), Toast.LENGTH_SHORT).show()
     }
 
     override fun showErrorGraph(massage: Int, massageType:String) {
