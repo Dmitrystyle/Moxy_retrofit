@@ -29,7 +29,7 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>
         return DataViewHolder( viewInflater, mListener)
     }
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.textView.text = repoList[position].nameOfRepo
+        holder.textView.text = repoList[position].name
     }
 
     override fun getItemCount(): Int {
@@ -40,7 +40,7 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.DataViewHolder>
        val textView: TextView = itemView.findViewById(R.id.textViewUserName)
 
     init {
-        itemView.setOnClickListener { listener.onItemClick(adapterPosition, repoList[adapterPosition].nameOfRepo) }
+        itemView.setOnClickListener { listener.onItemClick(adapterPosition, repoList[adapterPosition].name) }
     }
 
     }

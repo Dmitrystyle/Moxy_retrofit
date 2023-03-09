@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.moxy_retrofit.R
 import com.example.moxy_retrofit.R.*
 import com.example.moxy_retrofit.R.id.button_back
 import com.example.moxy_retrofit.R.id.textViewSendData
-import com.example.moxy_retrofit.data.model.Repo
 import com.example.moxy_retrofit.data.model.Stars
 import com.example.moxy_retrofit.ui.base.BaseActivity
 import com.example.moxy_retrofit.ui.main.MainActivity
@@ -40,8 +40,10 @@ class GraphActivity :  BaseActivity(), GraphView {
         val intent = intent
         val repoName = intent.getStringExtra("repoName")
         val tvView = findViewById<TextView>(textViewSendData)
+        val tvView1 = findViewById<TextView>(R.id.textViewSendData2)
         tvView.text = "Yoy select: $repoName"
         val userName = intent.getStringExtra("uname")
+        tvView1.text = "Yoy select: $userName"
         presenterGraph.requestRepoAndUserPresenter(userName.toString(), repoName.toString()) //передаем данные сразу о пользователе и репозитории
     }
 

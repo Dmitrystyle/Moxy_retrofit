@@ -11,23 +11,36 @@
         android:id="@+id/button_back"
         android:layout_width="160dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="69dp"
         android:background="@drawable/gradient_grey"
         android:text="Go MAIN"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSendData"
-        app:layout_constraintVertical_bias="0.897" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSendData2" />
 
     <TextView
         android:id="@+id/textViewSendData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="281dp"
-        android:layout_marginBottom="276dp"
+        android:layout_marginTop="201dp"
+        android:layout_marginBottom="48dp"
+        android:elegantTextHeight="false"
+        android:gravity="center"
+        android:textColor="#F6F4F4"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSendData2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewSendData2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="277dp"
         android:elegantTextHeight="false"
         android:gravity="center"
         android:textColor="#F6F4F4"
@@ -36,6 +49,6 @@
         app:layout_constraintBottom_toTopOf="@+id/button_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSendData" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

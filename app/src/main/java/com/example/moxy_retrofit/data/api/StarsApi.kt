@@ -8,11 +8,14 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.Path
 
 interface StarsApi {
 
-    @GET( "repos/{userName}/{userRepositoryName}/stargazers?application/vnd.github.star+json")
+    @Headers("Accept: application/vnd.github.star+json")
+    @GET( "repos/{userName}/{userRepositoryName}/stargazers")
     suspend fun getRepoSTAR(@Path("userName") userName: String, @Path("userRepositoryName") userRepositoryName: String ): List<Stars>
 
     companion object {
