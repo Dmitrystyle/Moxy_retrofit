@@ -14,7 +14,7 @@ import com.example.moxy_retrofit.ui.base.BaseActivity
 import com.example.moxy_retrofit.ui.main.MainActivity
 import moxy.ktx.moxyPresenter
 import java.text.SimpleDateFormat
-import java.util.regex.Pattern
+import java.util.*
 
 
 class GraphActivity :  BaseActivity(), GraphView {
@@ -52,14 +52,37 @@ class GraphActivity :  BaseActivity(), GraphView {
     override fun showGraph(result: List<Stars>) {
         repoDataList=result
         val tvView3 = findViewById<TextView>(R.id.textViewSendData3)
-        val dataFormatter = SimpleDateFormat("dd-MM-yyyy")
-        val arr = repoDataList.forEach{dataFormatter.parse(it.starred_at)}
 
-        /* for (index in repoDataList) {
-            arr.add("$index $" )  //arrayData.toString().slice(17..26).toList()
-        }*/
+        val calendar = Calendar.getInstance()
+  /*      calendar.set(2000, 1, 30);*/
 
-         tvView3.text = arr.toString()                 // repoDataList[0].toString().slice(17..26)    +"\n"+ repoDataList[1].toString().slice(17..26)
+
+        val dataFormatter = SimpleDateFormat("yyyy-MM-dd")  //2011-07-04T13:25:41Z
+        val arr = repoDataList.map{dataFormatter.parse(it.starred_at)}
+        val arr1 = arr.forEach{ date -> calendar.time}
+        //выполнить внутри цикла
+        val currentYear = arr1.calendar.get(Calendar.YEAR)
+        val currentMonth = calendar.get(Calendar.MONTH)
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+
+
+     /*   val arrString= arr.toString()
+        val myString = arrString.format(calendar.getTime())*/
+
+        tvView3.text = currentYear.toString()
+
+
+    //calndr.get(calendar.YEAR).toString()
+
+         //  Calendar.getInstance().getarr                 // repoDataList[0].toString().slice(17..26)    +"\n"+ repoDataList[1].toString().slice(17..26)
+        //df.format(Calendar.getInstance().getTime());
+/*
+        val currentDate = Date() // Текущая дата
+
+        val sdf = SimpleDateFormat("dd MMMMMMMM") // Задаем формат даты
+
+        val formattedDate = sdf.format(currentDate) // и форматируем*/
+
 
     }
     override fun showErrorGraph(massage: Int, massageType:String) {
@@ -78,3 +101,6 @@ println(cats.groupBy { it.age })
  9=[Cat(name=Murzik, age=9)]}
 
 */
+/* for (index in repoDataList) {
+    arr.add("$index $" )  //arrayData.toString().slice(17..26).toList()
+}*/
