@@ -13,6 +13,7 @@ import com.example.moxy_retrofit.data.model.Stars
 import com.example.moxy_retrofit.ui.base.BaseActivity
 import com.example.moxy_retrofit.ui.main.MainActivity
 import moxy.ktx.moxyPresenter
+import java.lang.String.format
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -54,53 +55,27 @@ class GraphActivity :  BaseActivity(), GraphView {
         val tvView3 = findViewById<TextView>(R.id.textViewSendData3)
 
         val calendar = Calendar.getInstance()
-  /*      calendar.set(2000, 1, 30);*/
-
-
         val dataFormatter = SimpleDateFormat("yyyy-MM-dd")  //2011-07-04T13:25:41Z
         val arr = repoDataList.map{dataFormatter.parse(it.starred_at)}
-        val arr1 = arr.forEach{ date -> calendar.time}
-        //выполнить внутри цикла
-        val currentYear = arr1.calendar.get(Calendar.YEAR)
-        val currentMonth = calendar.get(Calendar.MONTH)
-        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
-
-
-     /*   val arrString= arr.toString()
-        val myString = arrString.format(calendar.getTime())*/
-
-        tvView3.text = currentYear.toString()
-
-
-    //calndr.get(calendar.YEAR).toString()
-
-         //  Calendar.getInstance().getarr                 // repoDataList[0].toString().slice(17..26)    +"\n"+ repoDataList[1].toString().slice(17..26)
-        //df.format(Calendar.getInstance().getTime());
-/*
-        val currentDate = Date() // Текущая дата
-
-        val sdf = SimpleDateFormat("dd MMMMMMMM") // Задаем формат даты
-
-        val formattedDate = sdf.format(currentDate) // и форматируем*/
-
-
+        val arr1 = arr.forEach{ date -> calendar.set(date.year, date.month, date.day)}.toString()
+        val arr2 = arr1.map{calendar.get(Calendar.YEAR)}
+        tvView3.text = arr2.toString()
     }
     override fun showErrorGraph(massage: Int, massageType:String) {
            Toast.makeText(this, massage , Toast.LENGTH_SHORT).show()
            Toast.makeText(this, massageType , Toast.LENGTH_SHORT).show()
     }
+
+
+    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
+    }
+
+    fun getCurrentDateTime(): Date {
+        return Calendar.getInstance().time
+    }
+
+
 }
 
-/*
-groupBy группирует значения по некоторому критерию. Например, мы хотим разбить список котов по возрасту.
-val cats = listOf(Cat("Barsik", 5),
-        Cat("Murzik", 9), Cat("Ryzhik", 5))
-println(cats.groupBy { it.age })
-// Результат
-{5=[Cat(name=Barsik, age=5), Cat(name=Ryzhik, age=5)],
- 9=[Cat(name=Murzik, age=9)]}
-
-*/
-/* for (index in repoDataList) {
-    arr.add("$index $" )  //arrayData.toString().slice(17..26).toList()
-}*/
