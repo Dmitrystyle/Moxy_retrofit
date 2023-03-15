@@ -13,7 +13,6 @@ import com.example.moxy_retrofit.data.model.Stars
 import com.example.moxy_retrofit.ui.base.BaseActivity
 import com.example.moxy_retrofit.ui.main.MainActivity
 import moxy.ktx.moxyPresenter
-import java.lang.String.format
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,10 +56,40 @@ class GraphActivity :  BaseActivity(), GraphView {
         val calendar = Calendar.getInstance()
         val dataFormatter = SimpleDateFormat("yyyy-MM-dd")  //2011-07-04T13:25:41Z
         val arr = repoDataList.map{dataFormatter.parse(it.starred_at)}
-        val arr1 = arr.forEach{ date -> calendar.set(date.year, date.month, date.day)}.toString()
-        val arr2 = arr1.map{calendar.get(Calendar.YEAR)}
-        tvView3.text = arr2.toString()
+        val arr1 = arr.forEach{ date -> calendar.time = date}
+        val arrYEAR = arr1.toString().map{calendar.get(Calendar.YEAR)}
+        val arrMONTH = arr1.toString().map{calendar.get(Calendar.MONTH)+1}
+        val arrDAY = arr1.toString().map{calendar.get(Calendar.DAY_OF_MONTH)}
+        val unityresult = unityArray( arrYEAR, arrMONTH, arrDAY).toString()
+
+
+/*        for (let i = 0, i < Math.max(arrYEAR); i++) {
+            if (arrYEAR[i] != null) {
+                c.push(a[i])
+            }
+
+            if (b[i] != null) {
+                c.push(b[i])
+            }
+        }*/
+
+        tvView3.setText(unityresult)
+
+ /*      tvView3.setText(arrYEAR[0].toString()+"-"+arrMONTH[0].toString()+"-"+arrDAY[0].toString() +"\n"
+        +arrYEAR[1].toString()+"-"+arrMONTH[1].toString()+"-"+arrDAY[1].toString()+"\n"
+        +arrYEAR[2].toString()+"-"+arrMONTH[2].toString()+"-"+arrDAY[2].toString()+"\n"
+        +arrYEAR[8].toString()+"-"+arrMONTH[8].toString()+"-"+arrDAY[8].toString()+"\n" )*/
+
     }
+
+    private fun unityArray(arrYEAR: List<Int>, arrMONTH: List<Int>, arrDAY: List<Int>) {
+        val arrResul: List<Int>
+        for (i in arrYEAR) {
+            val arrResul = arrYEAR[i]+arrMONTH[i]+arrDAY[i]
+        }
+       // return arrResult
+    }
+
     override fun showErrorGraph(massage: Int, massageType:String) {
            Toast.makeText(this, massage , Toast.LENGTH_SHORT).show()
            Toast.makeText(this, massageType , Toast.LENGTH_SHORT).show()
