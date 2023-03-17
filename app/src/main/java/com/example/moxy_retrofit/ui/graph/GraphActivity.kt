@@ -7,9 +7,9 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.moxy_retrofit.R
-import com.example.moxy_retrofit.R.*
 import com.example.moxy_retrofit.R.id.button_back
 import com.example.moxy_retrofit.R.id.textViewSendData
+import com.example.moxy_retrofit.R.layout
 import com.example.moxy_retrofit.data.model.Stars
 import com.example.moxy_retrofit.ui.base.BaseActivity
 import com.example.moxy_retrofit.ui.main.MainActivity
@@ -50,55 +50,32 @@ class GraphActivity :  BaseActivity(), GraphView {
         presenterGraph.requestRepoAndUserPresenter(userName.toString(), repoName.toString()) //передаем данные сразу о пользователе и репозитории
     }
 
+    private fun  join (arrYEAR: List<Int>, arrMONTH: List<Int>, arrDAY: List<Int>): List<Int> {
+            return arrYEAR + arrMONTH + arrDAY
+       }
+
     override fun showGraph(result: List<Stars>) {
         repoDataList=result
         val tvView3 = findViewById<TextView>(R.id.textViewSendData3)
 
         val calendar = Calendar.getInstance()
-        val dataFormatter = SimpleDateFormat("yyyy-MM-dd")  //2011-07-04T13:25:41Z
+        val dataFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())  //2011-07-04T13:25:41Z
         val arr = repoDataList.map{dataFormatter.parse(it.starred_at)}
         val arr1 = arr.forEach{ date -> calendar.time = date}
         val arrYEAR = arr1.toString().map{calendar.get(Calendar.YEAR)}
         val arrMONTH = arr1.toString().map{calendar.get(Calendar.MONTH)+1}
         val arrDAY = arr1.toString().map{calendar.get(Calendar.DAY_OF_MONTH)}
+        val resultArray = join(arrYEAR, arrMONTH, arrDAY)
+        Log.d("MyLog", "$resultArray")
 
-        for (i in arrYEAR.indices) {
-
-            var resultArray = arrYEAR[i]+arrMONTH[i]+arrDAY[i]
-            Log.d("MyLog", "$resultArray" )
-        }
-
-
-
-
-        // val unityresult = unityArray( arrYEAR, arrMONTH, arrDAY).toString()
-
-/*        for (let i = 0, i < Math.max(arrYEAR); i++) {
-            if (arrYEAR[i] != null) {
-                c.push(a[i])
-            }
-
-            if (b[i] != null) {
-                c.push(b[i])
-            }
-        }*/
-
-    //    tvView3.setText(arrYEAR)
+        tvView3.setText(resultArray.toString())
 
  /*      tvView3.setText(arrYEAR[0].toString()+"-"+arrMONTH[0].toString()+"-"+arrDAY[0].toString() +"\n"
         +arrYEAR[1].toString()+"-"+arrMONTH[1].toString()+"-"+arrDAY[1].toString()+"\n"
         +arrYEAR[2].toString()+"-"+arrMONTH[2].toString()+"-"+arrDAY[2].toString()+"\n"
         +arrYEAR[8].toString()+"-"+arrMONTH[8].toString()+"-"+arrDAY[8].toString()+"\n" )*/
-
     }
 
-/*    private fun unityArray(arrYEAR: List<Int>, arrMONTH: List<Int>, arrDAY: List<Int>) {
-        val arrResul: List<Int>
-        for (i in arrYEAR) {
-            val arrResul = arrYEAR[i]+arrMONTH[i]+arrDAY[i]
-        }
-       // return arrResult
-    }*/
 
     override fun showErrorGraph(massage: Int, massageType:String) {
            Toast.makeText(this, massage , Toast.LENGTH_SHORT).show()
@@ -118,3 +95,16 @@ class GraphActivity :  BaseActivity(), GraphView {
 
 }
 
+/* for (i in arrYEAR.indices) {
+            var resultArray = arrYEAR[i]+arrMONTH[i]+arrDAY[i]
+            Log.d("MyLog", "$resultArray" )
+        }*/
+
+/*        for (let i = 0, i < Math.max(arrYEAR); i++) {
+            if (arrYEAR[i] != null) {
+                c.push(a[i])
+            }
+            if (b[i] != null) {
+                c.push(b[i])
+            }
+        }*/
