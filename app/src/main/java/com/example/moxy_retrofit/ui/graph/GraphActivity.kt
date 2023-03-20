@@ -1,6 +1,7 @@
 package com.example.moxy_retrofit.ui.graph
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -13,6 +14,11 @@ import com.example.moxy_retrofit.R.layout
 import com.example.moxy_retrofit.data.model.Stars
 import com.example.moxy_retrofit.ui.base.BaseActivity
 import com.example.moxy_retrofit.ui.main.MainActivity
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.utils.ColorTemplate
 import moxy.ktx.moxyPresenter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,13 +28,36 @@ class GraphActivity :  BaseActivity(), GraphView {
 
     var repoDataList: List<Stars> = ArrayList()
     private val presenterGraph by moxyPresenter { GraphPresenter() }
+    lateinit var barChart: BarChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_graph)
         setupUI()
         buttonReturn()
+        graph()
+     }
 
+    private fun graph() {
+        barChart=findViewById(R.id.bar_chart)
+        val list: ArrayList<BarEntry> = ArrayList()
+
+        list.add(BarEntry(100f,400f))
+        list.add(BarEntry(101f,200f))
+        list.add(BarEntry(102f,300f))
+        list.add(BarEntry(103f,400f))
+        list.add(BarEntry(104f,500f))
+
+        val barDataSet= BarDataSet(list,"List")
+        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS,255)
+        barDataSet.valueTextColor= Color.BLACK
+
+        val barData= BarData(barDataSet)
+
+        barChart.setFitBars(true)
+        barChart.data= barData
+        barChart.description.text= "Bar Chart"
+        barChart.animateY(2000)
     }
 
     private fun buttonReturn() {
@@ -56,7 +85,7 @@ class GraphActivity :  BaseActivity(), GraphView {
 
     override fun showGraph(result: List<Stars>) {
         repoDataList=result
-        val tvView3 = findViewById<TextView>(R.id.textViewSendData3)
+       // val tvView3 = findViewById<TextView>(R.id.textViewSendData3)
 
         val calendar = Calendar.getInstance()
         val dataFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())  //2011-07-04T13:25:41Z
@@ -68,14 +97,9 @@ class GraphActivity :  BaseActivity(), GraphView {
         val resultArray = join(arrYEAR, arrMONTH, arrDAY)
         Log.d("MyLog", "$resultArray")
 
-        tvView3.setText(resultArray.toString())
+        //tvView3.setText(resultArray.toString())
 
- /*      tvView3.setText(arrYEAR[0].toString()+"-"+arrMONTH[0].toString()+"-"+arrDAY[0].toString() +"\n"
-        +arrYEAR[1].toString()+"-"+arrMONTH[1].toString()+"-"+arrDAY[1].toString()+"\n"
-        +arrYEAR[2].toString()+"-"+arrMONTH[2].toString()+"-"+arrDAY[2].toString()+"\n"
-        +arrYEAR[8].toString()+"-"+arrMONTH[8].toString()+"-"+arrDAY[8].toString()+"\n" )*/
     }
-
 
     override fun showErrorGraph(massage: Int, massageType:String) {
            Toast.makeText(this, massage , Toast.LENGTH_SHORT).show()
@@ -95,16 +119,3 @@ class GraphActivity :  BaseActivity(), GraphView {
 
 }
 
-/* for (i in arrYEAR.indices) {
-            var resultArray = arrYEAR[i]+arrMONTH[i]+arrDAY[i]
-            Log.d("MyLog", "$resultArray" )
-        }*/
-
-/*        for (let i = 0, i < Math.max(arrYEAR); i++) {
-            if (arrYEAR[i] != null) {
-                c.push(a[i])
-            }
-            if (b[i] != null) {
-                c.push(b[i])
-            }
-        }*/
