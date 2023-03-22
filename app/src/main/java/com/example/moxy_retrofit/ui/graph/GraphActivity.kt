@@ -22,6 +22,11 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import moxy.ktx.moxyPresenter
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.stream.Collectors.counting
+import java.util.stream.Collectors.groupingBy
+
+import java.util.function.Function
+import java.util.stream.Collectors.*
 
 
 class GraphActivity :  BaseActivity(), GraphView {
@@ -79,25 +84,39 @@ class GraphActivity :  BaseActivity(), GraphView {
         presenterGraph.requestRepoAndUserPresenter(userName.toString(), repoName.toString()) //передаем данные сразу о пользователе и репозитории
     }
 
-    private fun  join (arrYEAR: List<Int>, arrMONTH: List<Int>, arrDAY: List<Int>): List<Int> {
-            return arrYEAR + arrMONTH + arrDAY
-       }
 
     override fun showGraph(result: List<Stars>) {
         repoDataList=result
-       // val tvView3 = findViewById<TextView>(R.id.textViewSendData3)
+        val tvView3 = findViewById<TextView>(R.id.textView)
+        val tvTextNumberofElement = findViewById<TextView>(R.id.textView2)
 
-        val calendar = Calendar.getInstance()
+
         val dataFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())  //2011-07-04T13:25:41Z
-        val arr = repoDataList.map{dataFormatter.parse(it.starred_at)}
+        val arr = repoDataList.map{dataFormatter.parse(it.starred_at)}  //здесь получили данные
+        val formatter = arr.map { dataFormatter.format(it)}
+        tvView3.setText(formatter.toString())
+
+        tvTextNumberofElement.setText(formatter.groupingBy { it }.eachCount().filter { it.value>1 }.toString())
+
+
+        //println(list.groupingBy { it }.eachCount().filter { it.value > 1 })
+       // val dataStatistics = formatter.collect(groupingBy(Function.identity(),counting()))
+           /* SimpleDateFormat("yyyy-MM-dd");
+        val formattedDate = formatter.format(arr);  //мы форматируем данные
         val arr1 = arr.forEach{ date -> calendar.time = date}
         val arrYEAR = arr1.toString().map{calendar.get(Calendar.YEAR)}
         val arrMONTH = arr1.toString().map{calendar.get(Calendar.MONTH)+1}
         val arrDAY = arr1.toString().map{calendar.get(Calendar.DAY_OF_MONTH)}
         val resultArray = join(arrYEAR, arrMONTH, arrDAY)
-        Log.d("MyLog", "$resultArray")
-
+        Log.d("MyLog", "$resultArray")*/
         //tvView3.setText(resultArray.toString())
+        //      String input = "T2011-07-04T13:25:41Z";
+        //        SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+        //        Date date = parser.parse(input);  - это выполнено - мы получае данные
+        //        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        //        String formattedDate = formatter.format(date);  - мы форматируем данные
+        //https://stackoverflow.com/questions/999172/how-to-parse-a-date   - источник
+
 
     }
 
