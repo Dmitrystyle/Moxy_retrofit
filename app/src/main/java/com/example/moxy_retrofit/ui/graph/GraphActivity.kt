@@ -3,7 +3,6 @@ package com.example.moxy_retrofit.ui.graph
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -22,11 +21,6 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import moxy.ktx.moxyPresenter
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.stream.Collectors.counting
-import java.util.stream.Collectors.groupingBy
-
-import java.util.function.Function
-import java.util.stream.Collectors.*
 
 
 class GraphActivity :  BaseActivity(), GraphView {
@@ -40,13 +34,14 @@ class GraphActivity :  BaseActivity(), GraphView {
         setContentView(layout.activity_graph)
         setupUI()
         buttonReturn()
-        graph()
+
      }
 
-    private fun graph() {
+    private fun graph(formatedData: Map<String, Int>) {
         barChart=findViewById(R.id.bar_chart)
-        val list: ArrayList<BarEntry> = ArrayList()
+        //val list: ArrayList<BarEntry> = formatedData
 
+       *val list: ArrayList<BarEntry> = ArrayList()
         list.add(BarEntry(100f,400f))
         list.add(BarEntry(101f,200f))
         list.add(BarEntry(102f,300f))
@@ -90,32 +85,17 @@ class GraphActivity :  BaseActivity(), GraphView {
         val tvView3 = findViewById<TextView>(R.id.textView)
         val tvTextNumberofElement = findViewById<TextView>(R.id.textView2)
 
-
+        //____сортируем данные______имя:   janishar   проект:  android-kotlin-mvp-architecture
         val dataFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())  //2011-07-04T13:25:41Z
         val arr = repoDataList.map{dataFormatter.parse(it.starred_at)}  //здесь получили данные
         val formatter = arr.map { dataFormatter.format(it)}
+
         tvView3.setText(formatter.toString())
 
-        tvTextNumberofElement.setText(formatter.groupingBy { it }.eachCount().filter { it.value>1 }.toString())
+        val formatedData = formatter.groupingBy { it }.eachCount().filter { it.value>1 }
+        graph(formatedData)
 
-
-        //println(list.groupingBy { it }.eachCount().filter { it.value > 1 })
-       // val dataStatistics = formatter.collect(groupingBy(Function.identity(),counting()))
-           /* SimpleDateFormat("yyyy-MM-dd");
-        val formattedDate = formatter.format(arr);  //мы форматируем данные
-        val arr1 = arr.forEach{ date -> calendar.time = date}
-        val arrYEAR = arr1.toString().map{calendar.get(Calendar.YEAR)}
-        val arrMONTH = arr1.toString().map{calendar.get(Calendar.MONTH)+1}
-        val arrDAY = arr1.toString().map{calendar.get(Calendar.DAY_OF_MONTH)}
-        val resultArray = join(arrYEAR, arrMONTH, arrDAY)
-        Log.d("MyLog", "$resultArray")*/
-        //tvView3.setText(resultArray.toString())
-        //      String input = "T2011-07-04T13:25:41Z";
-        //        SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
-        //        Date date = parser.parse(input);  - это выполнено - мы получае данные
-        //        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        //        String formattedDate = formatter.format(date);  - мы форматируем данные
-        //https://stackoverflow.com/questions/999172/how-to-parse-a-date   - источник
+        tvTextNumberofElement.setText(formatedData.toString())
 
 
     }
