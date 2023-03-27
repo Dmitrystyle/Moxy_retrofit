@@ -3,6 +3,7 @@ package com.example.moxy_retrofit.ui.graph
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -37,27 +38,20 @@ class GraphActivity :  BaseActivity(), GraphView {
 
      }
 
-    private fun graph(formatedData: Map<String, Int>) {
+    private fun graph(mapData: Map<Float, Float>) {
         barChart=findViewById(R.id.bar_chart)
-        //val list: ArrayList<BarEntry> = formatedData
 
-       *val list: ArrayList<BarEntry> = ArrayList()
-        list.add(BarEntry(100f,400f))
-        list.add(BarEntry(101f,200f))
-        list.add(BarEntry(102f,300f))
-        list.add(BarEntry(103f,400f))
-        list.add(BarEntry(104f,500f))
+        val list: ArrayList<BarEntry> = mapData.map{ (t,u) -> BarEntry(t,u)} as ArrayList<BarEntry>
+        Log.d("my","$list" )
 
-        val barDataSet= BarDataSet(list,"List")
+/*        val barDataSet= BarDataSet(list,"List")
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS,255)
         barDataSet.valueTextColor= Color.BLACK
-
         val barData= BarData(barDataSet)
-
         barChart.setFitBars(true)
         barChart.data= barData
         barChart.description.text= "Bar Chart"
-        barChart.animateY(2000)
+        barChart.animateY(2000)*/
     }
 
     private fun buttonReturn() {
@@ -77,6 +71,8 @@ class GraphActivity :  BaseActivity(), GraphView {
         val userName = intent.getStringExtra("uname")
         tvView1.text = "Yoy select: $userName"
         presenterGraph.requestRepoAndUserPresenter(userName.toString(), repoName.toString()) //передаем данные сразу о пользователе и репозитории
+
+
     }
 
 
@@ -93,9 +89,13 @@ class GraphActivity :  BaseActivity(), GraphView {
         tvView3.setText(formatter.toString())
 
         val formatedData = formatter.groupingBy { it }.eachCount().filter { it.value>1 }
-        graph(formatedData)
 
-        tvTextNumberofElement.setText(formatedData.toString())
+        val mapData = formatedData.mapValues{it.value.toFloat()}
+        val mapData1 = mapData.mapKeys { it.key.toFloat() }
+
+        graph(mapData1)
+
+        tvTextNumberofElement.setText(mapData1.toString())
 
 
     }
