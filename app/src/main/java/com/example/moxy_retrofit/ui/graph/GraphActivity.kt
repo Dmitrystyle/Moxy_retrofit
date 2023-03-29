@@ -3,6 +3,7 @@ package com.example.moxy_retrofit.ui.graph
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils.indexOf
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -42,16 +43,15 @@ class GraphActivity :  BaseActivity(), GraphView {
         barChart=findViewById(R.id.bar_chart)
 
         val list: ArrayList<BarEntry> = mapData.map{ (t,u) -> BarEntry(t,u)} as ArrayList<BarEntry>
-        Log.d("my","$list" )
 
-/*        val barDataSet= BarDataSet(list,"List")
+       val barDataSet= BarDataSet(list,"List")
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS,255)
         barDataSet.valueTextColor= Color.BLACK
         val barData= BarData(barDataSet)
         barChart.setFitBars(true)
         barChart.data= barData
         barChart.description.text= "Bar Chart"
-        barChart.animateY(2000)*/
+        barChart.animateY(2000)
     }
 
     private fun buttonReturn() {
@@ -90,12 +90,23 @@ class GraphActivity :  BaseActivity(), GraphView {
 
         val formatedData = formatter.groupingBy { it }.eachCount().filter { it.value>1 }
 
-        val mapData = formatedData.mapValues{it.value.toFloat()}
-        val mapData1 = mapData.mapKeys { it.key.toFloat() }
+        val mapDataList =formatedData.toList()  // имеем 2017-12-24, 6
+        //val mapDataListIndex = mapDataList.
+            //listOf(formatedData.mapValues { it.value })
+        //.indexOf(formatedData.mapValues{it.value})
+         //   formatedData.mapValues{it.value.toFloat()}
+       // val mapData1 = mapData.mapKeys { it.key.toFloat()}
+       //list.indexOf(element)
+      //  graph(mapData1)
 
-        graph(mapData1)
 
-        tvTextNumberofElement.setText(mapData1.toString())
+/*        fun main(args: Array<String>) {
+            val mutableList: MutableList<Int> = mutableListOf(1, 4, 9, 16, 25)
+            println("List before replacing : " + mutableList)
+            mutableList.set(3, 0)
+            println("List after  replacing : " + mutableList)*/
+
+        tvTextNumberofElement.setText(mapDataList.toString())
 
 
     }
