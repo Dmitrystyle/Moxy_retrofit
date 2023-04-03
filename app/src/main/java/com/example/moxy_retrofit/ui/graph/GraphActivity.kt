@@ -3,8 +3,6 @@ package com.example.moxy_retrofit.ui.graph
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.text.TextUtils.indexOf
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -21,6 +19,7 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import moxy.ktx.moxyPresenter
+import java.security.KeyStore.Entry
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,6 +29,8 @@ class GraphActivity :  BaseActivity(), GraphView {
     var repoDataList: List<Stars> = ArrayList()
     private val presenterGraph by moxyPresenter { GraphPresenter() }
     lateinit var barChart: BarChart
+    //val myList: ArrayList<RepoDate> = ArrayList()
+    val listArray:ArrayList<Int> = ArrayList(0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +40,10 @@ class GraphActivity :  BaseActivity(), GraphView {
 
      }
 
-    private fun graph(mapData: Map<Float, Float>) {
-        barChart=findViewById(R.id.bar_chart)
+    private fun graph(Data: ArrayList<BarEntry>) {
+      barChart=findViewById(R.id.bar_chart)
 
-        val list: ArrayList<BarEntry> = mapData.map{ (t,u) -> BarEntry(t,u)} as ArrayList<BarEntry>
+        val list: ArrayList<BarEntry> = Data
 
        val barDataSet= BarDataSet(list,"List")
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS,255)
@@ -53,6 +54,7 @@ class GraphActivity :  BaseActivity(), GraphView {
         barChart.description.text= "Bar Chart"
         barChart.animateY(2000)
     }
+
 
     private fun buttonReturn() {
         val buttonBack = findViewById<Button>(button_back)
@@ -88,25 +90,16 @@ class GraphActivity :  BaseActivity(), GraphView {
 
         tvView3.setText(formatter.toString())
 
-        val formatedData = formatter.groupingBy { it }.eachCount().filter { it.value>1 }
+        val formatedData = formatter.groupingBy { it }.eachCount().filter { it.value>1 }.toList()
+    //считаем колличестов индекстов массива
+        for (i in 0 until formatedData.size+1) {
+            listArray.add(i)
+       }
+        tvTextNumberofElement.setText(listArray.toString())
 
-        val mapDataList =formatedData.toList()  // имеем 2017-12-24, 6
-        //val mapDataListIndex = mapDataList.
-            //listOf(formatedData.mapValues { it.value })
-        //.indexOf(formatedData.mapValues{it.value})
-         //   formatedData.mapValues{it.value.toFloat()}
-       // val mapData1 = mapData.mapKeys { it.key.toFloat()}
-       //list.indexOf(element)
-      //  graph(mapData1)
-
-
-/*        fun main(args: Array<String>) {
-            val mutableList: MutableList<Int> = mutableListOf(1, 4, 9, 16, 25)
-            println("List before replacing : " + mutableList)
-            mutableList.set(3, 0)
-            println("List after  replacing : " + mutableList)*/
-
-        tvTextNumberofElement.setText(mapDataList.toString())
+    // получаем второй элемент
+       val newData = formatedData.mapIndexed { index, pair -> BarEntry(index.toFloat(), pair.second.toFloat())} as ArrayList<BarEntry>
+        graph(newData)
 
 
     }
