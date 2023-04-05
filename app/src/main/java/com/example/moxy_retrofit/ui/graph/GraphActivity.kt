@@ -19,9 +19,9 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import moxy.ktx.moxyPresenter
-import java.security.KeyStore.Entry
 import java.text.SimpleDateFormat
 import java.util.*
+import android.text.format.DateFormat;
 
 
 class GraphActivity :  BaseActivity(), GraphView {
@@ -41,11 +41,9 @@ class GraphActivity :  BaseActivity(), GraphView {
      }
 
     private fun graph(Data: ArrayList<BarEntry>) {
-      barChart=findViewById(R.id.bar_chart)
-
+        barChart=findViewById(R.id.bar_chart)
         val list: ArrayList<BarEntry> = Data
-
-       val barDataSet= BarDataSet(list,"List")
+        val barDataSet= BarDataSet(list,"List")
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS,255)
         barDataSet.valueTextColor= Color.BLACK
         val barData= BarData(barDataSet)
@@ -74,7 +72,6 @@ class GraphActivity :  BaseActivity(), GraphView {
         tvView1.text = "Yoy select: $userName"
         presenterGraph.requestRepoAndUserPresenter(userName.toString(), repoName.toString()) //передаем данные сразу о пользователе и репозитории
 
-
     }
 
 
@@ -92,16 +89,26 @@ class GraphActivity :  BaseActivity(), GraphView {
 
         val formatedData = formatter.groupingBy { it }.eachCount().filter { it.value>1 }.toList()
     //считаем колличестов индекстов массива
-        for (i in 0 until formatedData.size+1) {
+   /*     for (i in 0 until formatedData.size+1) {
             listArray.add(i)
-       }
-        tvTextNumberofElement.setText(listArray.toString())
-
+       }*/
     // получаем второй элемент
        val newData = formatedData.mapIndexed { index, pair -> BarEntry(index.toFloat(), pair.second.toFloat())} as ArrayList<BarEntry>
         graph(newData)
 
+        //выводим год
+       val year =arr.map{DateFormat.format("yyyy",it)}
+       val formatedDataYear = year.groupingBy { it }.eachCount().filter { it.value>1 }.toList()
+       val newDataYear = formatedDataYear.mapIndexed { index, pair -> BarEntry(index.toFloat(), pair.second.toFloat())} as ArrayList<BarEntry>
+        graph(newDataYear)
 
+        //выводим месяц
+       val month =arr.map{DateFormat.format("MM",it)}
+       val formatedDataMonth = month.groupingBy { it }.eachCount().filter { it.value>1 }.toList()
+       val newDataMonth = formatedDataMonth.mapIndexed { index, pair -> BarEntry(index.toFloat(), pair.second.toFloat())} as ArrayList<BarEntry>
+        graph(newDataMonth)
+
+       tvTextNumberofElement.setText(month.toString())
     }
 
     override fun showErrorGraph(massage: Int, massageType:String) {
