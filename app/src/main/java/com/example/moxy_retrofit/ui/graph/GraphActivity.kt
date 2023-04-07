@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import com.example.moxy_retrofit.R.id.*
 
-
 class GraphActivity :  BaseActivity(), GraphView {
 
     private val presenterGraph by moxyPresenter { GraphPresenter() }
@@ -25,10 +24,7 @@ class GraphActivity :  BaseActivity(), GraphView {
         setContentView(layout.activity_graph)
         setupUI()
         buttonUI()
-
      }
-
-
 
     private fun buttonUI() {
         val buttonBack = findViewById<Button>(button_back)
@@ -57,23 +53,18 @@ class GraphActivity :  BaseActivity(), GraphView {
         buttonDate.setOnClickListener {
             rGraph.getNuberStarsbyDate()
         }
-
         buttonYear.setOnClickListener {
             rGraph.getNuberStarsbyYear()
         }
-
         buttonMonth.setOnClickListener {
             rGraph.getNuberStarsbyMonth()
         }
-
     }
-
 
     override fun showErrorGraph(massage: Int, massageType:String) {
            Toast.makeText(this, massage , Toast.LENGTH_SHORT).show()
            Toast.makeText(this, massageType , Toast.LENGTH_SHORT).show()
     }
-
 
     fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
         val formatter = SimpleDateFormat(format, locale)
@@ -84,10 +75,7 @@ class GraphActivity :  BaseActivity(), GraphView {
         return Calendar.getInstance().time
     }
 
-
 }
 
 
-// val tvView3 = findViewById<TextView>(R.id.textView)
-//val tvTextNumberofElement = findViewById<TextView>(R.id.textView2)
-//     tvTextNumberofElement.setText(month.toString())
+
