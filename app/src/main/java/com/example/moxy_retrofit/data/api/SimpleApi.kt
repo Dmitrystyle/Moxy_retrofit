@@ -14,8 +14,14 @@ import retrofit2.http.Query
 interface SimpleApi {
 
       @GET( "users/{userName}/repos")
-    suspend fun getRepo(@Path("userName") userName: Int,
-                        @Query("page") page: Int): Response<Repo>
+    suspend fun getRepo(@Path("userName") userName: String,
+                        @Query("page") page: Int): Response<List<Repo>>
+
+    suspend fun getAllCharacters(
+        // @Query("count") size:Int,
+        @Query("page") page: Int ): Response<List<Repo>>
+
+
 
     companion object {
         fun create(): SimpleApi {

@@ -19,9 +19,9 @@ class PagingSource
 
         return try {
             val currentPage:Int = params.key ?: 1
-            val response = apiService.getRepo(currentPage)
+            val response = apiService.getAllCharacters(currentPage)
             val responseData = mutableListOf<Repo>()
-            val data = response.body()?.name?: emptyList()
+            val data = response.body() ?: emptyList()
             responseData.addAll(data)
 
             LoadResult.Page(
@@ -35,3 +35,27 @@ class PagingSource
 
     }
 }
+
+/*
+override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Int> {
+    val pageIndex = checkNotNull(params.key) { "key should not be null" }
+    val loadSize = params.loadSize
+    val page = pageRepository.getPage(pageIndex, loadSize)
+
+    val newCount = page.items.size
+    val total = page.total
+    val itemsBefore = pageIndex * PAGE_SIZE
+    val itemsAfter = total - (itemsBefore + newCount)
+
+    val prevKey = if (pageIndex == 0) null else pageIndex - 1
+    val nextKey = if (itemsAfter == 0) null else pageIndex + 1
+
+    return LoadResult.Page(
+        data = page.items,
+        prevKey = prevKey,
+        nextKey = nextKey,
+        itemsBefore = itemsBefore,
+        itemsAfter = itemsAfter,
+    )
+}
+}*/
